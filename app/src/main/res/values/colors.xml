@@ -5,4 +5,6 @@
     <color name="colorAccent">#0ca83b</color>
     <color name="gainsboro">#c9f0e3</color>
     <color name="selected">#b2d1c7</color>
+    <color name="bg_bubble_self">#62caa6</color>
+    <color name="bg_bubble_watbot">#ecf0f1</color>
 </resources>

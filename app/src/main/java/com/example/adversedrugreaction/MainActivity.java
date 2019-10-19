@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private SpinnerDialog spinnerDialog;
     private Button selectMedicine;
     private Button scanBarcode;
+    private Button chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +63,24 @@ public class MainActivity extends AppCompatActivity {
         selectMedicine.setEnabled(false);
         selectMedicine.setText(R.string.pleaseWait);
 
+        chat = findViewById(R.id.chat);
+        chat.setText(R.string.chat);
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+
         scanBarcode = findViewById(R.id.scanBarcode);
         scanBarcode.setEnabled(false);
         scanBarcode.setText(R.string.pleaseWait);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Source source = Source.CACHE;
 
         db.collection("Drugs")
-                .get(source).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

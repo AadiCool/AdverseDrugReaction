@@ -8,4 +8,6 @@
     <string name="more_common_adrs">More Common ADRs</string>
     <string name="less_common_adrs">Less Common ADRs</string>
     <string name="rare_found_adrs">Rare found ADRs</string>
+    <string name="what_s_on_your_mind">What\'s on your mind?</string>
+    <string name="chat">Chat</string>
 </resources>
