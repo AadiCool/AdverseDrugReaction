@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     String code = thisCode.rawValue.replaceAll("[^a-zA-Z]", "").toLowerCase();
                     code = code.substring(0, 1).toUpperCase() + code.substring(1);
                     Toast.makeText(MainActivity.this, code, Toast.LENGTH_SHORT).show();
+                    if(!items2.contains(code)) throw new Exception("Not Found");
                     Intent intent = new Intent(MainActivity.this , MedicinePage.class);
                     intent.putExtra("medicine",code);
                     startActivity(intent);
