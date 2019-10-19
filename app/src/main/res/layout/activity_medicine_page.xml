@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MedicinePage">
+
+    <TextView
+        android:id="@+id/medicineName"
+        android:layout_width="184dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/oswaldheavyitalic"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/genericName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/genericName"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/oswaldlightitalic"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/description"
+        android:layout_width="375dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="8dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medicineName">
+
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="375sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswaldlightitalic"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/moreCommonHeading"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/oswaldmedium"
+        android:text="More Common ADRs"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
+    <ListView
+        android:id="@+id/moreCommon"
+        android:layout_width="375sp"
+        android:layout_height="130dp"
+        android:layout_marginTop="6dp"
+        android:scrollbars="vertical"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moreCommonHeading" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/lessCommonHeading"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/oswaldmedium"
+        android:text="Less Common ADRs"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moreCommon" />
+
+    <ListView
+        android:id="@+id/lessCommon"
+        android:layout_width="375sp"
+        android:layout_height="130dp"
+        android:layout_marginTop="6dp"
+        android:scrollbars="vertical"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lessCommonHeading" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/rareHeading"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/oswaldmedium"
+        android:text="Rare found ADRs"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lessCommon" />
+
+    <ListView
+        android:id="@+id/rare"
+        android:layout_width="375sp"
+        android:layout_height="130dp"
+        android:layout_marginTop="6dp"
+        android:scrollbars="vertical"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rareHeading" >
+    </ListView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="94dp"
+        android:layout_height="69dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

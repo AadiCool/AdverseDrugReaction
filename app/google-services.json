@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "772741016517",
+    "firebase_url": "https://adversedrugreaction-155ff.firebaseio.com",
+    "project_id": "adversedrugreaction-155ff",
+    "storage_bucket": "adversedrugreaction-155ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772741016517:android:32961cf4df87655c3d79ac",
+        "android_client_info": {
+          "package_name": "com.example.adversedrugreaction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772741016517-4qedmjjg7pvu46frr9rsqn9s69s78d2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adversedrugreaction",
+            "certificate_hash": "5c20260fbbf6c3692247dc67a8a97287cda94b63"
+          }
+        },
+        {
+          "client_id": "772741016517-fbprd4i3tvv70m25ovgpto0gemic5ds0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9StH_7Kfn0Ki2w7DrjJa4OhqmSae65Dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772741016517-fbprd4i3tvv70m25ovgpto0gemic5ds0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

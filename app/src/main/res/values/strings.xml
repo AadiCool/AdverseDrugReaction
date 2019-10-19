@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ADR</string>
+    <string name="title_activity_medicine_page">MedicinePage</string>
+    <string name="action_settings">Settings</string>
+</resources>
