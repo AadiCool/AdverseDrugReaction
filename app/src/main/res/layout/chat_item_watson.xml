@@ -20,11 +20,11 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/bg_bubble_watbot"
-        android:fontFamily="sans-serif"
+        android:background="@color/gainsboro"
+        android:textSize="26sp"
+        android:fontFamily="@font/oswaldlight"
         android:textColor="@android:color/black"
-        android:textIsSelectable="true"
-        android:textSize="14sp" />
+        android:textIsSelectable="true" />
 
 
 </LinearLayout>

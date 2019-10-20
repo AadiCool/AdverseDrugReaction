@@ -234,15 +234,22 @@ public class ChatActivity extends AppCompatActivity {
             .sessionId(watsonAssistantSession.getSessionId())
             .build();
           MessageResponse response = watsonAssistant.message(options).execute().getResult();
+
           try {
-            Log.i("Intent", response.getOutput().toString());
-            Log.i("Intent", response.getOutput().getEntities().get(0).value());
             if(response.getOutput().getEntities().get(0).entity().equals("medicine")) {
               Intent intent = new Intent(ChatActivity.this, MedicinePage.class);
               intent.putExtra("medicine", response.getOutput().getEntities().get(0).value());
               startActivity(intent);
             }
-          }catch (Exception e){}
+          }catch (Exception ignored){}
+          try{
+            if(response.getOutput().getIntents().get(0).intent().equals("goodbye")){
+              Intent intent = new Intent(ChatActivity.this, MainActivity.class);
+              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+              startActivity(intent);
+            }
+          } catch (Exception ignored) {}
+
           final Message outMessage = new Message();
           if (response != null &&
             response.getOutput() != null &&
