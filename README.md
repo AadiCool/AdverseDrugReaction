@@ -32,4 +32,4 @@ is Firebase Firestore.
  
  
  ## Caution
- Please do not share this repository in a public domain. The repository contains raw Firebase and IBM Watson credentials which if found by google, Google and IBM will invalidate the credentials and the app functioning will break down. Share the apk if needed after the building the code repositoryin Android Studio.
+ Please do not share this repository in a public domain. The repository contains raw Firebase and IBM Watson credentials which if found by google, Google and IBM will invalidate the credentials and the app functioning will break down. Share the apk if needed after the building the code repository in Android Studio.
