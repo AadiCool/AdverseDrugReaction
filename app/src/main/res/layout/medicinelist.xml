@@ -9,10 +9,10 @@
         android:background="@color/gainsboro"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
-        android:layout_height="25sp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAlignment="center"
         android:fontFamily="@font/oswaldlight"
-        android:textSize="16sp"
+        android:textSize="25sp"
         android:orientation="horizontal" />
 </LinearLayout>

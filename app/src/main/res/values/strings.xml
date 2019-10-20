@@ -10,4 +10,7 @@
     <string name="rare_found_adrs">Rare found ADRs</string>
     <string name="what_s_on_your_mind">What\'s on your mind?</string>
     <string name="chat">Chat</string>
+    <string name="medicine_name">Medicine Name</string>
+    <string name="generic_name">Generic Name</string>
+    <string name="processing">Processing</string>
 </resources>

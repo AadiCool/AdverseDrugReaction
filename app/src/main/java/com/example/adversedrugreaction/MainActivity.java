@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -27,6 +29,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -35,12 +39,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageActivity;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
@@ -66,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         chat = findViewById(R.id.chat);
         chat.setText(R.string.chat);
+        chat.setEnabled(false);
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
                 fetchpermission();
             }
         });
+
+        chat.setEnabled(true);
     }
 
     @Override
@@ -135,47 +148,12 @@ public class MainActivity extends AppCompatActivity {
             CropImage.ActivityResult cropimage = CropImage.getActivityResult(data);
             assert cropimage != null;
             Uri imageUri = cropimage.getUri();
-            try {
-                Bitmap cropimageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                Log.d("SIZE", cropimageBitmap.getWidth()+"");
-                BarcodeDetector detector = new BarcodeDetector.Builder(getApplicationContext())
-                        .setBarcodeFormats(Barcode.ALL_FORMATS).build();
-                if(!detector.isOperational()){
-                    Toast.makeText(MainActivity.this, "Sorry, Barcode is not operational", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                Frame frame = new Frame.Builder().setBitmap(cropimageBitmap).build();
-                SparseArray<Barcode> barcodes = detector.detect(frame);
-                if(barcodes.size() == 0){
-                    barCodeNotFound();
-                    return;
-                }
-                Barcode thisCode = barcodes.valueAt(0);
-                if(thisCode == null) {
-                    barCodeNotFound();
-                    return;
-                }
-                try {
-                    String code = thisCode.rawValue.replaceAll("[^a-zA-Z]", "").toLowerCase();
-                    code = code.substring(0, 1).toUpperCase() + code.substring(1);
-                    Toast.makeText(MainActivity.this, code, Toast.LENGTH_SHORT).show();
-                    if(!items2.contains(code)) throw new Exception("Not Found");
-                    Intent intent = new Intent(MainActivity.this , MedicinePage.class);
-                    intent.putExtra("medicine",code);
-                    startActivity(intent);
-                    Log.e("BARCODE", code);
-                }catch (Exception e){
-                    barCodeNotFound();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            scanBarcode(imageUri);
         }
     }
 
-    private void barCodeNotFound(){
-        Toast.makeText(MainActivity.this, "Sorry, Barcode is not found", Toast.LENGTH_LONG).show();
+    private void barCodeNotFound(String msg){
+        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
     }
 
     private void fetchpermission() {
@@ -195,6 +173,74 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(MainActivity.this);
             }
+        }
+    }
+
+    private void scanBarcode(Uri uri) {
+        scanBarcode.setEnabled(false);
+        scanBarcode.setText(R.string.processing);
+
+        FirebaseVisionBarcodeDetectorOptions options =
+                new FirebaseVisionBarcodeDetectorOptions.Builder()
+                        .setBarcodeFormats(
+                                FirebaseVisionBarcode.FORMAT_QR_CODE,
+                                FirebaseVisionBarcode.FORMAT_CODE_128,
+                                FirebaseVisionBarcode.FORMAT_EAN_13,
+                                FirebaseVisionBarcode.FORMAT_EAN_8,
+                                FirebaseVisionBarcode.FORMAT_CODE_39)
+                        .build();
+        Log.d("BARCODE", "Image Taken");
+        FirebaseVisionImage image;
+        try {
+            image = FirebaseVisionImage.fromFilePath(MainActivity.this, uri);
+            FirebaseVisionBarcodeDetector detector = FirebaseVision.getInstance()
+                    .getVisionBarcodeDetector(options);
+            Task<List<FirebaseVisionBarcode>> result = detector.detectInImage(image)
+                    .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
+                        @Override
+                        public void onSuccess(List<FirebaseVisionBarcode> barcodes) {
+                            for (FirebaseVisionBarcode barcode : barcodes) {
+                                String rawValue = barcode.getRawValue();
+                                int valueType = barcode.getValueType();
+                                Log.d("BARCODE", rawValue + " " + valueType);
+                                findMedicine(rawValue);
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            barCodeNotFound("Sorry, Barcode is not found");
+                            scanBarcode.setEnabled(true);
+                            scanBarcode.setText(R.string.scanBarcode);
+                        }
+                    });
+
+        } catch (IOException e) {
+            barCodeNotFound("Sorry, it can't be processed");
+            scanBarcode.setEnabled(true);
+            scanBarcode.setText(R.string.scanBarcode);
+            e.printStackTrace();
+        }
+    }
+
+    private void findMedicine(String medicine){
+        scanBarcode.setEnabled(true);
+        scanBarcode.setText(R.string.scanBarcode);
+        try {
+            String code = medicine.replaceAll("[^a-zA-Z]", "").toLowerCase();
+            code = code.substring(0, 1).toUpperCase() + code.substring(1);
+            Toast.makeText(MainActivity.this, code, Toast.LENGTH_SHORT).show();
+            if(!items2.contains(code)) {
+                barCodeNotFound("Sorry, we don't have this medicine");
+                throw new Exception("Not Found");
+            }
+            Intent intent = new Intent(MainActivity.this , MedicinePage.class);
+            intent.putExtra("medicine",code);
+            startActivity(intent);
+            Log.e("BARCODE", code);
+        }catch (Exception e){
+            barCodeNotFound("Sorry, Barcode is not found");
         }
     }
 }
