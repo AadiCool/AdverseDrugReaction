@@ -7,4 +7,5 @@
     <color name="selected">#b2d1c7</color>
     <color name="bg_bubble_self">#c9edf0</color>
     <color name="bg_bubble_watbot">#abdade</color>
+    <color name="orange">#ff5500</color>
 </resources>

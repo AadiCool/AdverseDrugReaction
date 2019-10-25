@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -88,6 +89,14 @@ public class MainActivity extends AppCompatActivity {
         scanBarcode = findViewById(R.id.scanBarcode);
         scanBarcode.setEnabled(false);
         scanBarcode.setText(R.string.pleaseWait);
+
+        FloatingActionButton floatingActionButton = findViewById(R.id.login);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

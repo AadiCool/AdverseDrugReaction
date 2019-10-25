@@ -13,4 +13,11 @@
     <string name="medicine_name">Medicine Name</string>
     <string name="generic_name">Generic Name</string>
     <string name="processing">Processing</string>
+    <string name="instructions">You are about to change the database and your login will be saved. Please be careful.</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="logo">LOGO</string>
+    <string name="welcome_as_admin">Welcome as ADMIN</string>
+    <string name="authenticating">Authenticating..</string>
 </resources>
