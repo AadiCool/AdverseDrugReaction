@@ -17,7 +17,6 @@ public class Medicine {
      Medicine(@org.jetbrains.annotations.NotNull Map<String, Object> map) {
         this.description = (String) map.get("Description");
         this.genericName = (String) map.get("Generic Name");
-        Log.e("GENERIC", this.genericName);
         this.moreCommon = (ArrayList<String>) map.get("More common");
         this.lessCommon = (ArrayList<String>) map.get("Less common");
         this.rare = (ArrayList<String>) map.get("Rare");

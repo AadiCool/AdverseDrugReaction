@@ -3,14 +3,14 @@
     <string name="title_activity_medicine_page">MedicinePage</string>
     <string name="action_settings">Settings</string>
     <string name="pleaseWait">Please Wait</string>
-    <string name="selectMedicine">Select Medicine</string>
+    <string name="selectMedicine">Select Drug</string>
     <string name="scanBarcode">Scan Barcode</string>
     <string name="more_common_adrs">More Common ADRs</string>
     <string name="less_common_adrs">Less Common ADRs</string>
     <string name="rare_found_adrs">Rare found ADRs</string>
     <string name="what_s_on_your_mind">What\'s on your mind?</string>
     <string name="chat">Chat</string>
-    <string name="medicine_name">Medicine Name</string>
+    <string name="medicine_name">Drug Name</string>
     <string name="generic_name">Generic Name</string>
     <string name="processing">Processing</string>
     <string name="instructions">You are about to change the database and your login will be saved. Please be careful.</string>
@@ -20,4 +20,9 @@
     <string name="logo">LOGO</string>
     <string name="welcome_as_admin">Welcome as ADMIN</string>
     <string name="authenticating">Authenticating..</string>
+    <string name="delete">Delete</string>
+    <string name="submit">Submit</string>
+    <string name="description">Description</string>
+    <string name="cancel">Cancel</string>
+    <string name="cautionMessage1">Please enter carefully. Once entered, cannot be changed</string>
 </resources>

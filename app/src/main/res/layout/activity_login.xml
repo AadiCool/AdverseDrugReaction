@@ -46,6 +46,8 @@
         android:padding="10dp"
         android:inputType="textPersonName"
         android:hint="@string/username"
+        android:textAlignment="center"
+        android:fontFamily="@font/oswaldlight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +62,9 @@
         android:ems="10"
         android:inputType="textPassword"
         android:hint="@string/password"
+        android:textAlignment="center"
         android:padding="10dp"
+        android:fontFamily="@font/oswaldlight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +73,7 @@
 
     <Button
         android:id="@+id/submitLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="181sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/login"

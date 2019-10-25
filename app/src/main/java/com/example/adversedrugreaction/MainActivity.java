@@ -52,6 +52,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
@@ -99,13 +100,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         db.collection("Drugs")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                         items2.add(document.getId());
                         items.add(document.getId().toUpperCase());
                         Log.d("Medicine", document.getId());

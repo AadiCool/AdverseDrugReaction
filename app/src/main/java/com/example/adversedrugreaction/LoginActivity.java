@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -151,6 +152,9 @@ public class LoginActivity extends AppCompatActivity {
                         submit.setText(R.string.login);
                         submit.setEnabled(true);
                         Log.d("LOGIN", "Success");
+                        Intent intent = new Intent(LoginActivity.this, EditDrugs.class);
+                        intent.putExtra("Username", username.getText().toString());
+                        startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

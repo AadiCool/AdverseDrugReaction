@@ -31,7 +31,9 @@
         android:roundIcon="@mipmap/ic_launcher_round1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".ChangeDrugDetails"></activity>
+        <activity android:name=".EditDrugs" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".AdrShow" />
 
         <meta-data

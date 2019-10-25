@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginTop="15sp"
+    android:background="@color/gainsboro">
+
+    <TextView
+        android:id="@+id/showADReditable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:fontFamily="@font/oswaldlight"
+        android:textSize="25sp"
+        android:orientation="horizontal"/>
+
+    <Button
+        android:id="@+id/deleteADR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/delete"
+        android:background="@drawable/button"
+        android:fontFamily="@font/oswaldmedium"
+        android:textSize="18sp" />
+
+</LinearLayout>
