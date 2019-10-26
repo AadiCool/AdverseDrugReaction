@@ -32,32 +32,38 @@ public class Medicine {
 
     ArrayList<HashMap<String, String>> getMoreCommon() {
         ArrayList<HashMap<String, String>> data = new ArrayList<>();
-        for(int i=0; i<moreCommon.size(); i++) {
-            HashMap<String, String> adr = new HashMap<>();
-            adr.put("adr", moreCommon.get(i));
-            data.add(adr);
-        }
+        try {
+            for (int i = 0; i < moreCommon.size(); i++) {
+                HashMap<String, String> adr = new HashMap<>();
+                adr.put("adr", moreCommon.get(i));
+                data.add(adr);
+            }
+        }catch (Exception ignored) {}
         return data;
     }
 
     ArrayList<HashMap<String, String>> getLessCommon() {
         ArrayList<HashMap<String, String>> data = new ArrayList<>();
-        for(int i=0; i<lessCommon.size(); i++) {
-            HashMap<String, String> adr = new HashMap<>();
-            Log.e("DATA", lessCommon.get(i));
-            adr.put("adr", lessCommon.get(i));
-            data.add(adr);
-        }
+        try {
+            for (int i = 0; i < lessCommon.size(); i++) {
+                HashMap<String, String> adr = new HashMap<>();
+                Log.e("DATA", lessCommon.get(i));
+                adr.put("adr", lessCommon.get(i));
+                data.add(adr);
+            }
+        }catch (Exception ignored) {}
         return data;
     }
 
     ArrayList<HashMap<String, String>> getRare() {
         ArrayList<HashMap<String, String>> data = new ArrayList<>();
-        for(int i=0; i<rare.size(); i++) {
-            HashMap<String, String> adr = new HashMap<>();
-            adr.put("adr", rare.get(i));
-            data.add(adr);
-        }
+        try {
+            for (int i = 0; i < rare.size(); i++) {
+                HashMap<String, String> adr = new HashMap<>();
+                adr.put("adr", rare.get(i));
+                data.add(adr);
+            }
+        }catch (Exception ignored) {}
         return data;
     }
 }

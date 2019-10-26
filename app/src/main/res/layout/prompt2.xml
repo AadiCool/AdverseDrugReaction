@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="25dp" >
+
+    <TextView
+        android:id="@+id/getAdrNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/oswaldlightitalic"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textColor="@color/orange"
+        android:text="@string/cautionMessage1"/>
+
+    <EditText
+        android:id="@+id/getAdrNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/adr_name"
+        android:fontFamily="@font/oswaldlightitalic"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName">
+        <requestFocus />
+    </EditText>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/adrTypeDropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+    </androidx.appcompat.widget.AppCompatSpinner>
+
+</LinearLayout>

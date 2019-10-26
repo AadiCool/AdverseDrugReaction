@@ -9,7 +9,7 @@
     android:background="@color/gainsboro">
 
     <TextView
-        android:id="@+id/showADReditable"
+        android:id="@+id/showDrugEditable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -19,7 +19,7 @@
         android:orientation="horizontal"/>
 
     <Button
-        android:id="@+id/deleteADR"
+        android:id="@+id/deleteDrug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"

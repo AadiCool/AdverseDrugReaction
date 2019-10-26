@@ -36,7 +36,9 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
@@ -101,19 +103,37 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Drugs")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                        items2.add(document.getId());
-                        items.add(document.getId().toUpperCase());
-                        Log.d("Medicine", document.getId());
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.e("Listen failed.", Objects.requireNonNull(e.getLocalizedMessage()));
+                            return;
+                        }
+                        items.clear();
+                        items2.clear();
+                        assert queryDocumentSnapshots != null;
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            items2.add(doc.getId());
+                            items.add(doc.getId().toUpperCase());
+                            Log.d("Medicine", doc.getId());
+                        }
+                        setListData();
                     }
-                    setListData();
-                }
-            }
-        });
+                });
+//                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+//                        items2.add(document.getId());
+//                        items.add(document.getId().toUpperCase());
+//                        Log.d("Medicine", document.getId());
+//                    }
+//                    setListData();
+//                }
+//            }
+//        });
     }
 
     private void setListData(){

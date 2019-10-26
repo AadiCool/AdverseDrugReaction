@@ -26,5 +26,7 @@
 
     <!-- REPLACE `TTS_URL_HERE` with Watson Text to Speech service URL-->
     <string name="TTS_url">https://gateway-lon.watsonplatform.net/text-to-speech/api</string>
+    
+    <string name="workspace_id">132a5c1d–330f–4765–8517-fe69c1757391</string>
 
 </resources>

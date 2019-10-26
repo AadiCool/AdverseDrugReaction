@@ -65,7 +65,7 @@ public class AdrShow extends AppCompatActivity {
                 try {
                     final AlertDialog alertDialog = new AlertDialog.Builder(AdrShow.this).create();
                     alertDialog.setTitle("Search on Google");
-                    alertDialog.setMessage("Google the following symptom:\n" + Objects.requireNonNull(map.get("adr")));
+                    alertDialog.setMessage("Google the following ADR:\n" + Objects.requireNonNull(map.get("adr")));
                     alertDialog.setButton(Dialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

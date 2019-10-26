@@ -47,28 +47,28 @@ public class MedicinePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine_page);
 
-        final String medicineOption = (String) Objects.requireNonNull(getIntent().getExtras()).getString("medicine");
+        final String medicineOption = Objects.requireNonNull(getIntent().getExtras()).getString("medicine");
         assert medicineOption != null;
         Log.e("MEDICINE", medicineOption);
 
-        TextView medicineName = (TextView) findViewById(R.id.medicineName);
+        TextView medicineName = findViewById(R.id.medicineName);
         medicineName.setText(medicineOption.toUpperCase());
-        genericName = (TextView) findViewById(R.id.genericName);
-        description = (TextView) findViewById(R.id.descriptionText);
+        genericName = findViewById(R.id.genericName);
+        description = findViewById(R.id.descriptionText);
 
-        moreCommon = (Button) findViewById(R.id.moreCommon);
+        moreCommon = findViewById(R.id.moreCommon);
         moreCommon.setEnabled(false);
         moreCommon.setText(R.string.pleaseWait);
 
-        lessCommon = (Button) findViewById(R.id.lessCommon);
+        lessCommon = findViewById(R.id.lessCommon);
         lessCommon.setEnabled(false);
         lessCommon.setText(R.string.pleaseWait);
 
-        rare = (Button) findViewById(R.id.rare);
+        rare = findViewById(R.id.rare);
         rare.setEnabled(false);
         rare.setText(R.string.pleaseWait);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
